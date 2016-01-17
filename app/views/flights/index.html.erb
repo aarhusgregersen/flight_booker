@@ -1,33 +1,8 @@
+<% provide(:title, 'Search Flights') %>
 <h1>Flight booker</h1>
 
-<br>
+<%= render 'search' %>
 
-
-
-<br>
-<br>
-
-<p>test:</p>
-<%  %>
-
-<br>
-<p>Flight duration:</p>
-<% @flights.each do |flight| %>
-	<%= flight.duration %>
-	<% end %>
-
-<br>
-
-<select name="passengers">
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-</select>
-
-
-
-<br>
-<br>
-
-
+<% if !@flights.none? %>
+	<%= render 'search_results' %>
+<% end %>

@@ -6,21 +6,33 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Passenger.delete_all
+Booking.delete_all
+Airport.delete_all
+Flight.delete_all
+
 airports = [{ name: 'New York City', shortcode: 'NYC' },
 						{ name: 'Los Angelos Airport', shortcode: 'LAX' },
 						{ name: 'Billund Aiport', shortcode: 'BIL' }]
 
 airports.each do |airport|
-	Airport.create( airport)
+	Airport.create(airport)
 end
 
-flights = [{ startAirport: 'NYC',  finishAirport: 'LAX' , duration: 2, :startdate => DateTime.strptime("01/01/2016 8:00", "%m/%d/%Y %H:%M")},
-					{ startAirport: 'LAX',  finishAirport: 'NYC' , duration: 2,  :startdate => DateTime.strptime("01/22/2016 10:00", "%m/%d/%Y %H:%M")},
-					{ startAirport: 'LAX',  finishAirport: 'BIL' , duration: 22, :startdate => DateTime.strptime("01/24/2016 9:00", "%m/%d/%Y %H:%M")},
-					{ startAirport: 'BIL',  finishAirport: 'LAX' , duration: 22, :startdate => DateTime.strptime("01/25/2016 17:00", "%m/%d/%Y %H:%M")},
-					{ startAirport: 'NYC',  finishAirport: 'BIL' , duration: 16, :startdate => DateTime.strptime("01/31/2016 6:00", "%m/%d/%Y %H:%M")},
-					{ startAirport: 'BIL',  finishAirport: 'NYC' , duration: 16, :startdate => DateTime.strptime("01/06/2016 22:00", "%m/%d/%Y %H:%M")}]
+duration = { "LAX_NYC" => 2.hours, "NYC_LAX" => 2.hours, "LAX_BIL" => 22.hours, "BIL_LAX" => 22.hours, "NYC_BIL" => 16.hours, "BIL_NYC" => 16.hours }
 
-flights.each do |flight|
-	Flight.create(flight)
+
+Airport.all.each do |airport1|
+	Airport.all.each do |airport2|
+		unless airport1 == airport2
+			dur = duration["#{airport1.shortcode}_#{airport2.shortcode}"]
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: Time.now, duration: dur)
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: 3.hours.from_now, duration: dur)
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: 6.hours.from_now, duration: dur)
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: 1.day.from_now, duration: dur)
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: (1.day + 6.hours).from_now, duration: dur)
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: 2.days.from_now, duration: dur)
+			Flight.create(startAirport: airport1.id, finishAirport: airport2.id, date: (2.days + 3.hours).from_now, duration: dur)
+		end
+	end
 end

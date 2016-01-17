@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  startAirport: MyString
-  finishAirport: MyString
-  duration: MyString
-  startdate: 2016-01-12
+  date: 2016-01-16 16:07:51
+  startAirport: 1
+  finishAirport: 1
+  duration: 1
 
 two:
-  startAirport: MyString
-  finishAirport: MyString
-  duration: MyString
-  startdate: 2016-01-12
+  date: 2016-01-16 16:07:51
+  startAirport: 1
+  finishAirport: 1
+  duration: 1

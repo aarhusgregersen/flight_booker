@@ -1,20 +1,24 @@
 <% provide(:title, 'Confirmation') %>
 <h1>Booking Confirmation</h1>
 
-<p>
-  Thank you for booking your flight with flight-booker.
-  Your confirmation # is <b><%= @booking.id %></b>.
-</p>
-
-<p>
-  Flight #<%= @booking.flight.id %>: <%= @booking.flight.startAirport.shortcode %> ->
-  <%= @booking.flight.finishAirport.shortcode %> on
-  <%= @booking.flight.date.strftime("%A, %B %d, %Y") %>.
-</p>
-
-<p>Passengers:</p>
-<ol>
-<% @booking.passengers.each do |passenger| %>
- <li> <%="#{passenger.name} <#{passenger.email}>" %></li>
-<% end %>
-</ol>
+<div class="centered">
+	<div class="center">
+		<h2>Thank you for booking your flight with flight-booker. <br>
+		<small>Please have a nice flight and check out my code on github!</small>
+		</h2>
+		<div class="well well-sm">
+		<p>
+			Your confirmation # is <b><%= @booking.id %></b>.
+		</p>
+			Flight #<%= @booking.flight_id %>: <%= @booking.flight.startAirport.inspect%> ->
+			<%= @booking.flight.finishAirport.inspect %> on
+			<%= @booking.flight.date.strftime("%A, %B %d, %Y") %>.
+		</div>
+		<h3>Passengers:</h3>
+		<ol>
+			<% @booking.passengers.each do |passenger| %>
+			<li> <%="#{passenger.name} | <#{passenger.email}>" %></li>
+			<% end %>
+		</ol>
+	</div>
+</div>

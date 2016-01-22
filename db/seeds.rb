@@ -10,17 +10,13 @@ Passenger.delete_all
 Booking.delete_all
 Airport.delete_all
 Flight.delete_all
+Ticket.delete_all
 
-airports = [{ name: 'New York City', shortcode: 'NYC' },
-						{ name: 'Los Angelos Airport', shortcode: 'LAX' },
-						{ name: 'Billund Aiport', shortcode: 'BIL' }]
-
-airports.each do |airport|
-	Airport.create(airport)
-end
+nyc = Airport.create(name: "New York City", shortcode: "NYC")
+lax = Airport.create(name: "Los Angelos Airport", shortcode: "LAX")
+bil = Airport.create(name: "Billund Aiport", shortcode: "BIL")
 
 duration = { "LAX_NYC" => 2.hours, "NYC_LAX" => 2.hours, "LAX_BIL" => 22.hours, "BIL_LAX" => 22.hours, "NYC_BIL" => 16.hours, "BIL_NYC" => 16.hours }
-
 
 Airport.all.each do |airport1|
 	Airport.all.each do |airport2|

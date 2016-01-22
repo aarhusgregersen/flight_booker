@@ -3,6 +3,6 @@
 
 <%= render 'search' %>
 
-<% if !@flights.none? %>
+<% unless @flights.none? %>
 	<%= render 'search_results' %>
 <% end %>

@@ -1,8 +1,7 @@
 class Flight < ActiveRecord::Base
 
-	belongs_to :from_airport, :class_name => "Airport"
-  belongs_to :to_airport,   :class_name => "Airport"
-
+	belongs_to :from_airport, :class_name => "Airport", :foreign_key => "startAirport"
+  belongs_to :to_airport,   :class_name => "Airport", :foreign_key => "finishAirport"
   has_many :bookings
   has_many :passengers, :through => :bookings
 

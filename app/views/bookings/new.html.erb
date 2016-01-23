@@ -3,34 +3,32 @@
 
 <fieldset>
   <legend>Trip Details</legend>
-  <h3>Flight #<%= @flight.id %></h3>
-  <h3>
-
-  </h3>
-  <p><%= @flight.date.strftime("%A, %B %d, %Y") %></p>
+  <h3>Your flight ID is: <b><%= @flight.id %></b></h3>
+  <p>Your flight is leaving at: <b><%= @flight.date.strftime("%A, %B %d, %Y") %></b></p>
 </fieldset>
 
 <%= form_for @booking  do |book| %>
 
 <div class="row">
-<div class="col-md-6">
-  <%= label_tag(:id, "FLIGHT ID") %>
-  <div class="form-control">
-    <%= @flight.id %>
+
+ <div class="col-md-2">
+    <%= label_tag(:from, "FROM") %>
+    <div class="form-control">
+      <%= @flight.from_airport.name  %>
+    </div>
   </div>
-</div>
 
-<div class="col-md-6">
-  <%= label_tag(:date, "FLIGHT DATE") %>
-  <div class="form-control">
-   <%= @flight.date %>
- </div>
-</div>
+  <div class="col-md-2">
+    <%= label_tag(:to, "TO") %>
+    <div class="form-control">
+      <%= @flight.to_airport.name %>
+    </div>
+  </div>
 
-<div class="col-md-6">
+<div class="col-md-2">
   <%= label_tag(:duration, "FLIGHT DURATION") %>
   <div class="form-control">
-    <%= @flight.duration %>
+    <%= @flight.duration / 60 / 60 %> hours
   </div>
 </div>
 
@@ -40,10 +38,11 @@
 <br>
 <br>
 
-<div class="col-md-12 text-center">
+<div class="row">
 
   <%= book.fields_for :passengers do |pass| %>
 
+  <div class="col-md-6 text-center">
     <%= "Passenger " + @numbers.to_s %>
 
     <div class="form-group">
@@ -56,8 +55,10 @@
       <%= pass.text_field :email, class: 'form-control form-small' %>
     </div>
 
-<% @numbers +=1 %>
 
+
+<% @numbers +=1 %>
+</div>
 <% end %>
 
 <%= hidden_field_tag(:flight_id, params[:flight_id]) %>

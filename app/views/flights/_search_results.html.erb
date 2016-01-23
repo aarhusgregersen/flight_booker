@@ -14,28 +14,28 @@
   <div class="col-md-2">
     <%= label_tag(:from, "FROM") %>
     <div class="form-control">
-      <%= result.startAirport.inspect  %>
+      <%= result.from_airport.name  %>
     </div>
   </div>
 
   <div class="col-md-2">
     <%= label_tag(:to, "TO") %>
     <div class="form-control">
-      <%= result.finishAirport.inspect %>
+      <%= result.to_airport.name %>
     </div>
   </div>
 
   <div class="col-md-2">
     <%= label_tag(:date, "FLIGHT DATE") %>
     <div class="form-control">
-      <%= result.date %>
+      <%= result.date_formatted %>
     </div>
   </div>
 
   <div class="col-md-2">
     <%= label_tag(:duration, "FLIGHT DURATION") %>
     <div class="form-control">
-      <%= result.duration %>
+      <%= result.duration / 60 / 60%> hours
     </div>
   </div>
 

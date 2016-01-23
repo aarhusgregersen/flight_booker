@@ -8,10 +8,10 @@
 		</h2>
 		<div class="well well-sm">
 		<p>
-			Your confirmation # is <b><%= @booking.id %></b>.
+			Your order ID is <b>#<%= @booking.id %></b>.
 		</p>
-			Flight #<%= @booking.flight_id %>: <%= @booking.flight.startAirport.inspect%> ->
-			<%= @booking.flight.finishAirport.inspect %> on
+			Flight #<%= @booking.flight_id %>: <%= @booking.flight.from_airport.name%> ->
+			<%= @booking.flight.to_airport.name %> on
 			<%= @booking.flight.date.strftime("%A, %B %d, %Y") %>.
 		</div>
 		<h3>Passengers:</h3>
